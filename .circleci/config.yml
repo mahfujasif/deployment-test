@@ -1,0 +1,40 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/deployment-test-api
+    docker:
+    - image: circleci/openjdk:11.0.1-jdk
+    steps:
+    - checkout
+    - restore_cache:
+        keys:
+        - deployment-test-api-dependencies-{{ checksum "pom.xml" }}
+    - run: mvn dependency:go-offline
+    - save_cache:
+        paths:
+        - ~/.m2
+        key: deployment-test-api-dependencies-{{ checksum "pom.xml" }}
+    - run:
+        name: build
+        command: mvn clean package
+    - persist_to_workspace:
+        root: .
+        paths:
+        - .
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+    - build:
+        filters:
+          branches:
+            only:
+            - master
+    - deploy-production:
+        requires:
+        - build
+        filters:
+          branches:
+            only:
+            - master
+
