@@ -33,7 +33,10 @@ jobs:
     - APP_DIR: .
     docker:
     - image: innovatorjapan/awscli:latest
-
+    steps:
+    - attach_workspace:
+        at: .
+    - run: 
     
 workflows:
   version: 2
