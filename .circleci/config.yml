@@ -21,6 +21,23 @@ jobs:
         root: .
         paths:
         - .
+        
+        
+  deploy-production:
+    working_directory: ~/repo
+    environment:
+    - AWS_DEFAULT_REGION: us-east-2
+    - CODE_DEPLOY_S3_BUCKET_NAME: sample-deployment-test
+    - CODE_DEPLOY_APPLICATION_NAME: Deployment_Test_API
+    - CODE_DEPLOY_GROUP_NAME: Deployment_Test_API_prod
+    - APP_DIR: .
+    docker:
+    - image: innovatorjapan/awscli:latest
+    steps:
+    - attach_workspace:
+        at: .
+    - run: sh /bin/aws-s3-deploy
+    
 workflows:
   version: 2
   build_and_deploy:
@@ -30,5 +47,11 @@ workflows:
           branches:
             only:
             - master
-    
-
+    - deploy-production:
+        requires:
+        - build
+        filters:
+          branches:
+            only:
+            - master
+            
