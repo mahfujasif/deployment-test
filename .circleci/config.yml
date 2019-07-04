@@ -29,7 +29,7 @@ jobs:
     - AWS_DEFAULT_REGION: us-east-2
     - CODE_DEPLOY_S3_BUCKET_NAME: sample-deployment-test
     - CODE_DEPLOY_APPLICATION_NAME: Deployment_Test_API
-    - CODE_DEPLOY_GROUP_NAME: Deployment-test_API_prod
+    - CODE_DEPLOY_GROUP_NAME: Deployment_Test_API_prod
     - APP_DIR: .
     docker:
     - image: innovatorjapan/awscli:latest
