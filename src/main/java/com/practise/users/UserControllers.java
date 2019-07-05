@@ -23,6 +23,7 @@ public class UserControllers {
   public ResponseEntity<Map<String, String>> healthCheck() {
     Map<String, String> map = new HashMap<>();
     map.put("message", HEALTH_MESSAGE);
+    System.out.println("health check ok");
     return new ResponseEntity<Map<String, String>>(map , HttpStatus.OK);
   }
 
