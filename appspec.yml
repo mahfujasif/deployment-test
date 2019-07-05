@@ -13,14 +13,18 @@ permissions:
 
 hooks:
   ApplicationStop:
-    - location: scripts/server_stop.sh
-      timeout: 300
-      runas: ec2-user
+  - location: scripts/server_stop.sh
+    timeout: 20
+    runas: ec2-user
+  BeforeInstall:
+  - location: scripts/clean_directory.sh
+    timeout: 20
+    runas: ec2-user
   ApplicationStart:
-    - location: scripts/server_start.sh
-      timeout: 300
-      runas: ec2-user
+  - location: scripts/server_start.sh
+    timeout: 120
+    runas: ec2-user
   ValidateService:
-    - location: scripts/server_validate.sh
-      timeout: 300
-      runas: ec2-user
+  - location: scripts/server_validate.sh
+    timeout: 300
+    runas: ec2-user
