@@ -36,7 +36,7 @@ jobs:
     steps:
     - attach_workspace:
         at: .
-    - run: 
+    - run: sh /bin/aws-s3-deploy
     
 workflows:
   version: 2
