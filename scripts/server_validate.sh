@@ -5,8 +5,8 @@ do
     if [ "$(curl -s http://localhost:8080/health-check)" = '{"message":"Current API version for deployment-test: 1"}' ]
     then
         exit 0
+    else
+        echo "check server is running?"
+        sleep 3s
     fi
-
-    echo 'Check server is running?'
-    sleep 5
 done
