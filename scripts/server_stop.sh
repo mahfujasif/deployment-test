@@ -7,4 +7,4 @@ then
     exit 0
 fi
 
-sudo /usr/local/bin/supervisorctl stop taikyonavi-api
+sudo /usr/local/bin/supervisorctl stop deployment-test

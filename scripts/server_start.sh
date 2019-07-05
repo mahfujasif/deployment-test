@@ -7,4 +7,4 @@ then
     exit 1
 fi
 
-sudo /usr/local/bin/supervisorctl start taikyonavi-api
+sudo /usr/local/bin/supervisorctl start deployment-test
